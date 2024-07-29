@@ -1,0 +1,27 @@
+ <settings pass="oobeSystem">
+        <component name="Microsoft-Windows-Deployment" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS" xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+            <Reseal>
+                <Mode>Audit</Mode>
+            </Reseal>
+        </component>
+    </settings>
+    <settings pass="auditUser">
+        <component name="Microsoft-Windows-Deployment" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS" xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+            <RunSynchronous>
+                <RunSynchronousCommand wcm:action="add">
+                    <Order>1</Order>
+                    <Path>cmd /c c:\windows\system32\taskkill.exe /f /im syntpenh.exe</Path>
+                </RunSynchronousCommand>
+                <RunSynchronousCommand wcm:action="add">
+                    <Order>2</Order>
+                    <Path>cmd /c C:\Windows\system32\oobe\oem\te\silentinaudit.vbs</Path>
+                </RunSynchronousCommand>
+                <RunSynchronousCommand wcm:action="add">
+                    <Order>3</Order>
+                    <Path>cmd /c regedit /s C:\Windows\system32\oobe\oem\te\changereg.reg</Path>
+                </RunSynchronousCommand>
+            </RunSynchronous>
+        </component>
+    </settings>
+    <cpi:offlineImage cpi:source="wim:Z:/install.wim#Windows 8" xmlns:cpi="urn:schemas-microsoft-com:cpi"></cpi:offlineImage>
+</unattend>

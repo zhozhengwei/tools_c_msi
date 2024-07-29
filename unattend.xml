@@ -1,0 +1,97 @@
+<?xml version='1.0' encoding='utf-8'?>
+<unattend xmlns="urn:schemas-microsoft-com:unattend">
+    <settings pass="generalize" wasPassProcessed="true">
+        <component name="Microsoft-Windows-Security-SPP" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS" xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+            <SkipRearm>0</SkipRearm>
+        </component>
+        <component name="Microsoft-Windows-PnpSysprep" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS" xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+            <PersistAllDeviceInstalls>false</PersistAllDeviceInstalls>
+			<DoNotCleanUpNonPresentDevices>true</DoNotCleanUpNonPresentDevices>
+        </component>
+    </settings>
+    <settings pass="specialize">
+        <component name="Security-Malware-Windows-Defender" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS" xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+            <TrustedImageIdentifier>{9E59739B-33B6-4BF6-81D6-EB14524DB140}</TrustedImageIdentifier>
+        </component>
+        <component name="Microsoft-Windows-SystemRestore-Main" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS" xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+            <DisableSR>1</DisableSR>
+        </component>
+        <component name="Microsoft-Windows-Shell-Setup" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS" xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+            <ComputerName>MSI</ComputerName>
+			<OEMName>MSI</OEMName>
+			<ProductKey>NF6HC-QH89W-F8WYV-WWXV4-WFG6P</ProductKey>
+			<OEMInformation>
+                <Logo>C:\Windows\System32\oobe\info\OEMLOGO.BMP</Logo>
+                <SupportURL>http://support.msi.com/</SupportURL>
+            </OEMInformation>
+            <Themes>
+                <ThemeName>MSI</ThemeName>
+				<BrandIcon>C:\Windows\System32\oobe\info\OEMLOGO.PNG</BrandIcon>
+                <DesktopBackground>C:\Windows\System32\oobe\info\Wallpaper\backgroundDefault.jpg</DesktopBackground>
+            </Themes>
+        </component>
+        <component name="Microsoft-Windows-IE-InternetExplorer" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS" xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+            <SearchScopes>
+                <Scope wcm:action="add">
+                    <ScopeUrl>http://www.bing.com/search?q={searchTerms}&amp;form=PRNAM1&amp;src=IE11TR&amp;pc=NMTE</ScopeUrl>
+                    <ScopeDisplayName>Bing</ScopeDisplayName>
+                    <ScopeDefault>true</ScopeDefault>
+                    <ScopeKey>Bing</ScopeKey>
+                    <SuggestionsURL>http://api.bing.com/qsml.aspx?query={searchTerms}&amp;src={referrer:source?}&amp;maxwidth={ie:maxWidth}&amp;rowheight={ie:rowHeight}&amp;sectionHeight={ie:sectionHeight}&amp;FORM=IE8SSC&amp;market={Language}</SuggestionsURL>
+                    <FaviconURL>http://www.bing.com/favicon.ico</FaviconURL>
+                </Scope>
+            </SearchScopes>
+            <Home_Page>http://www.msn.com/?pc=NMTE</Home_Page>
+            <UserAgent>NMTE</UserAgent>
+        </component>
+        <component name="Microsoft-Windows-Internet-Browser-Configuration" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS" xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+            <PartnerSearchCode>NMTS</PartnerSearchCode>
+        </component>
+        <component name="Microsoft-Windows-Deployment" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS" xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+            <RunSynchronous>
+                <RunSynchronousCommand wcm:action="add">
+                    <Order>1</Order>
+                    <Path>CMD /C IF EXIST C:\Windows.old\Windows\System32\oobe\OEM\Log\BootToStartScreenMode.txt REG ADD HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\RunOnce /v StrtScreen /t REG_SZ /d "%SystemRoot%\System32\oobe\OEM\StartScreen.cmd"</Path>
+                </RunSynchronousCommand>
+                <RunSynchronousCommand wcm:action="add">
+                    <Order>2</Order>
+                    <Path>CMD /C IF EXIST C:\Windows.old\Windows\System32\oobe\OEM\SSE.cmd REG ADD HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\RunOnce /v SSE /t REG_SZ /d "%SystemRoot%\System32\oobe\OEM\SSE.cmd"</Path>
+                </RunSynchronousCommand>
+                <RunSynchronousCommand wcm:action="add">
+                    <Order>3</Order>
+                    <Path>CMD /C IF EXIST %SystemRoot%\System32\oobe\OEM\Log\vPro.txt reg add HKLM\System\CurrentControlset\Control\DeviceGuard\Scenarios\SystemGuard /v "Enabled" /t REG_DWORD /d "1" /f</Path>
+                </RunSynchronousCommand>
+                <RunSynchronousCommand wcm:action="add">
+                    <Order>4</Order>
+                    <Path>CMD /C IF EXIST C:\Recovery\OEM\Log\vPro.txt reg add HKLM\System\CurrentControlset\Control\DeviceGuard\Scenarios\SystemGuard /v "Enabled" /t REG_DWORD /d "1" /f</Path>
+                </RunSynchronousCommand>
+            </RunSynchronous>
+        </component>
+    </settings>
+    <settings pass="oobeSystem">
+        <component name="Microsoft-Windows-Shell-Setup" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS" xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+			<FirstLogonCommands>
+                <SynchronousCommand wcm:action="add">
+                    <Order>1</Order>
+                    <CommandLine>CMD /C C:\Windows\System32\oobe\OEM\PBR.cmd</CommandLine>
+                </SynchronousCommand>
+                <SynchronousCommand wcm:action="add">
+                    <Order>2</Order>
+                    <CommandLine>cmd /c DEL /F /Q C:\Windows\System32\oobe\OEM\PBR.cmd</CommandLine>
+                </SynchronousCommand>
+            </FirstLogonCommands>
+            <TaskbarLinks>
+                <Link0>%ProgramData%\Microsoft\Windows\Start Menu\Programs\MSI\Dragon Center\Dragon Center.lnk</Link0>
+				<Link1>%ProgramData%\Microsoft\Windows\Start Menu\Programs\MSI\Creator Center\Creator Center.lnk</Link1>
+				<Link2>%ProgramData%\Microsoft\Windows\Start Menu\Programs\Micro-Star International Co., Ltd\Dragon Center\Dragon Center.lnk</Link2>
+            </TaskbarLinks>
+			<NotificationArea>
+				<PromotedIcon1>
+					<Path>C:\Program Files (x86)\Norton Internet Security\Engine\21.0.0.100\NIS.exe</Path>
+					<GUID>{91AFD4FA-7CDA-4E51-AEB3-22905E3E1385}</GUID>
+				</PromotedIcon1>
+			</NotificationArea>
+        </component>
+    </settings>
+    <cpi:offlineImage cpi:source="wim:Z:/install.wim#Windows 10" xmlns:cpi="urn:schemas-microsoft-com:cpi"></cpi:offlineImage>
+</unattend>
